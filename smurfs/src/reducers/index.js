@@ -11,36 +11,35 @@ const initialState = {
   deletingSmurf: false,
   error: null
 }
-/*
- Your initial/default state for this project could *Although does not have to* look a lot like this
- {
-   smurfs: [],
-   fetchingSmurfs: false
-   addingSmurf: false
-   updatingSmurf: false
-   deletingSmurf: false
-   error: null
- }
-*/
-function reducer(state = initialState, action) {
+
+export const smurfReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SMURF_START:
       return {
-
+        ...state,
+        error: "",
+        fetchingSmurfs: true
       }
     case FETCH_SMURF_SUCCESS:
       return {
-
+        ...state,
+        error: "",
+        fetchingSmurfs: false,
+        smurfs: action.payload,
       }
     case FETCH_SMURF_FAILURE:
       return {
-    
+        ...state,
+        error: action.payload,
+        fetchingSmurfs: false
       }
     default:
       return state;
   }
 }
 
+
+export default smurfReducer;
 /*
   You'll only need one smurf reducer for this project.
   Feel free to export it as a default and import as rootReducer. 
@@ -48,5 +47,3 @@ function reducer(state = initialState, action) {
   There is no need for 'combineReducers' in this project.
   Components can then read your store as, `state` and not `state.fooReducer`.
 */
-
-export default reducer;
