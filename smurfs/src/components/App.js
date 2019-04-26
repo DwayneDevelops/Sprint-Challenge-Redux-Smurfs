@@ -3,7 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
-import { getSmurfs } from '../actions';
+import { getSmurfs, deleteSmurf } from '../actions';
 import SmurfList from '../components/SmurfList';
 import SmurfForm from './SmurfForm';
 
@@ -19,6 +19,11 @@ class App extends Component {
     this.props.getSmurfs();
   }
 
+  deleteItem = (e, index) => {
+    e.preventDefault()
+    this.props.deleteSmurf(index)
+}
+
   render() {
     return (
       <div className="App">
@@ -27,7 +32,7 @@ class App extends Component {
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
         <Loader />
-        <SmurfList smurfs={this.props.smurfs} />
+        <SmurfList smurfs={this.props.smurfs} delete={this.deleteItem} />
         <SmurfForm />
       </div>
     );
@@ -42,4 +47,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getSmurfs })(App);
+export default connect(mapStateToProps, { getSmurfs, deleteSmurf })(App);

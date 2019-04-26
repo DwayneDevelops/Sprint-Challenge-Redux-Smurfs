@@ -18,19 +18,19 @@ export const getSmurfs = () => dispatch => {
     .catch(err => dispatch({ type: FETCH_SMURF_FAILURE, payload: err }));
 }
 
-export const addSmurf = (index) => (dispatch) => {
-  dispatch  ({type: ADD_SMURF});
+export const addSmurf = index => dispatch => {
+  dispatch({type: ADD_SMURF});
   axios
     .post('http://localhost:3333/smurfs', index)
     .then(res => dispatch({type: FETCH_SMURF_SUCCESS, payload: res.data }))
     .catch(err => dispatch({type: FETCH_SMURF_FAILURE, payload: err}));
 }
 
-export const deleteSmurf = (smurf) => (dispatch) =>{
-  dispatch  ({type: DELETE_SMURF})
+export const deleteSmurf = smurf => dispatch =>{
+  dispatch({type: DELETE_SMURF})
   axios
     .delete(`http://localhost:3333/smurfs/${smurf}`)
-    .then(response => { dispatch({type: FETCH_SMURF_SUCCESS, payload: response.data}) ; return true  })
+    .then(response => { dispatch({type: FETCH_SMURF_SUCCESS, payload: response.data})})
     .catch( err => dispatch({type: FETCH_SMURF_FAILURE, payload: err}));
 }       
 /*

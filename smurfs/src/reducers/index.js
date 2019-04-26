@@ -1,7 +1,7 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
-import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAILURE } from '../actions';
+import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAILURE, ADD_SMURF, DELETE_SMURF } from '../actions';
 
 const initialState = {
   smurfs: [],
@@ -32,6 +32,18 @@ export const smurfReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         fetchingSmurfs: false
+      }
+    case ADD_SMURF:
+      return {
+        ...state,
+        error: "",
+        addingSmurf: true
+      }
+    case DELETE_SMURF:
+      return {
+        ...state,
+        error: "",
+        deletingSmurf: true
       }
     default:
       return state;
