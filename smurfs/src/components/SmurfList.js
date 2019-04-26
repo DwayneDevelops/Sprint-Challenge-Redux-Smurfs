@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const SmurfList = (props) => {
     console.log(props)
   return (
